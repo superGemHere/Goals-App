@@ -13,16 +13,17 @@ import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 export default function App() {
-  
   const [goals, setGoals] = useState([]);
 
-  
-
-  const addGoalHandler = (enteredGoalText) => {
+  const addGoalHandler = enteredGoalText => {
     setGoals(currentGoals => [
       ...currentGoals,
       { text: enteredGoalText, id: Math.random().toString() }
     ]);
+  };
+
+  const deleteGoalHandler = () => {
+    console.log("deleted goal");
   };
 
   return (
@@ -35,6 +36,7 @@ export default function App() {
             return (
               <GoalItem
                 text={itemData.item.text}
+                onDeleteItem={deleteGoalHandler}
               />
             );
           }}
@@ -53,5 +55,5 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5
-  },
+  }
 });
