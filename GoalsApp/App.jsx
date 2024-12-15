@@ -9,8 +9,8 @@ import {
   View
 } from "react-native";
 
-import GoalItem from "./components/GoalItem.js";
-import GoalInput from "./components/GoalInput.js";
+import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 export default function App() {
   
