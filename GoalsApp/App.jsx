@@ -22,8 +22,10 @@ export default function App() {
     ]);
   };
 
-  const deleteGoalHandler = () => {
-    console.log("deleted goal");
+  const deleteGoalHandler = (id) => {
+    setGoals(currentGoals => {
+      return currentGoals.filter(goal => goal.id !== id);
+    });
   };
 
   return (
@@ -37,6 +39,7 @@ export default function App() {
               <GoalItem
                 text={itemData.item.text}
                 onDeleteItem={deleteGoalHandler}
+                id={itemData.item.id}
               />
             );
           }}
