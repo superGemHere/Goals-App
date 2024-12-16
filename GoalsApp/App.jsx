@@ -13,6 +13,7 @@ import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 export default function App() {
+  const [isModalVis, setIsModalVis] = useState(false);
   const [goals, setGoals] = useState([]);
 
   const addGoalHandler = enteredGoalText => {
@@ -20,6 +21,7 @@ export default function App() {
       ...currentGoals,
       { text: enteredGoalText, id: Math.random().toString() }
     ]);
+    hideModalHandler();
   };
 
   const deleteGoalHandler = (id) => {
@@ -30,7 +32,12 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput onAddGoal={addGoalHandler} />
+      <Button
+        title="Add New Goal"
+        color={"#5e0acc"}
+      />
+      <GoalInput
+      />
       <View style={styles.goalsContainer}>
         <FlatList
           data={goals}
