@@ -24,19 +24,31 @@ export default function App() {
     hideModalHandler();
   };
 
-  const deleteGoalHandler = (id) => {
+  const hideModalHandler = () => {
+    setIsModalVis(false);
+  };
+
+  const deleteGoalHandler = id => {
     setGoals(currentGoals => {
       return currentGoals.filter(goal => goal.id !== id);
     });
   };
 
+  const showModalHandler = () => {
+    setIsModalVis(true);
+  };
+
   return (
     <View style={styles.appContainer}>
       <Button
+        onPress={showModalHandler}
         title="Add New Goal"
         color={"#5e0acc"}
       />
       <GoalInput
+        onAddGoal={addGoalHandler}
+        modalVis={isModalVis}
+        onCancel={hideModalHandler}
       />
       <View style={styles.goalsContainer}>
         <FlatList
