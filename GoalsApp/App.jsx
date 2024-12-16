@@ -11,6 +11,7 @@ import {
 
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [isModalVis, setIsModalVis] = useState(false);
@@ -39,41 +40,45 @@ export default function App() {
   };
 
   return (
-    <View style={styles.appContainer}>
-      <Button
-        onPress={showModalHandler}
-        title="Add New Goal"
-        color={"#5e0acc"}
-      />
-      <GoalInput
-        onAddGoal={addGoalHandler}
-        modalVis={isModalVis}
-        onCancel={hideModalHandler}
-      />
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={goals}
-          renderItem={itemData => {
-            return (
-              <GoalItem
+    <>
+      <StatusBar style="light" />
+      <View style={styles.appContainer}>
+        <Button
+          onPress={showModalHandler}
+          title="Add New Goal"
+          color={"#5e0acc"}
+          />
+        <GoalInput
+          onAddGoal={addGoalHandler}
+          modalVis={isModalVis}
+          onCancel={hideModalHandler}
+          />
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={goals}
+            renderItem={itemData => {
+              return (
+                <GoalItem
                 text={itemData.item.text}
                 onDeleteItem={deleteGoalHandler}
                 id={itemData.item.id}
-              />
-            );
-          }}
-          keyExtractor={(item, index) => item.id}
-        />
+                />
+              );
+            }}
+            keyExtractor={(item, index) => item.id}
+            />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   appContainer: {
+    flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
-    flex: 1
+    backgroundColor: "#1e085a"
   },
   goalsContainer: {
     flex: 5
